@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Registration System</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f4ff, #d9e8ff);
+      padding: 20px;
+      color: #222;
+
+
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px 35px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 105, 255, 0.15);
+      transition: box-shadow 0.3s ease;
+    }
+    .container:hover {
+      box-shadow: 0 15px 30px rgba(0, 105, 255, 0.3);
+    }
+    h2 {
+      
+      text-align: center;
+      color: #0047b3;
+      margin-bottom: 30px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+  }
+    input, select {
+      width: 100%;
+      padding: 14px 18px;
+      margin: 10px 0 22px;
+      border: 2px solid #0047b3;
+      border-radius: 10px;
+      font-size: 16px;
+      outline-color: #002e7f;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    input:focus, select:focus {
+      border-color: #002e7f;
+      box-shadow: 0 0 12px rgba(0, 46, 127, 0.4);
+    }
+    button {
+      padding: 14px 30px;
+      background: #0047b3;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 17px;
+      cursor: pointer;
+      margin-right: 12px;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(0, 71, 179, 0.3);
+      transition: background-color 0.35s ease, transform 0.25s ease, box-shadow 0.35s ease;
+      user-select: none;
+    }
+    button:hover {
+      background-color: #002e7f;
+      box-shadow: 0 8px 20px rgba(0, 46, 127, 0.6);
+      transform: translateY(-3px);
+    }
+    button:active {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 15px rgba(0, 46, 127, 0.4);
+    }
+    .student-table {
+      width: 100%;
+      margin-top: 35px;
+      border-collapse: separate;
+      border-spacing: 0 8px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      border-radius: 15px;
+      overflow: hidden;
+      background: #fefefe;
+    }
+    .student-table th, .student-table td {
+      padding: 14px 18px;
+      text-align: left;
+      vertical-align: middle;
+    }
+    .student-table thead tr {
+      background: #0047b3;
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.6px;
+    }
+    .student-table tbody tr {
+      background: #f9fbff;
+      transition: background-color 0.3s ease;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0, 71, 179, 0.05);
+    }
+    .student-table tbody tr:hover {
+      background-color: #e3ebff;
+      box-shadow: 0 6px 20px rgba(0, 71, 179, 0.12);
+    }
+    #photoPreview {
+      display: block;
+      max-width: 90px;
+      max-height: 90px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 71, 179, 0.25);
+      border: 2px solid #0047b3;
+      margin-top: 10px;
+      object-fit: cover;
+    }
+    #searchInput {
+      width: 100%;
+      padding: 14px 18px;
+      margin: 25px 0 20px;
+      border: 2px solid #0047b3;
+      border-radius: 10px;
+      font-size: 16px;
+      outline-color: #002e7f;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    #searchInput:focus {
+      border-color: #002e7f;
+      box-shadow: 0 0 12px rgba(0, 46, 127, 0.4);
+    }
+    .action-btn {
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      color: white;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    .edit-btn {
+      background-color: #28a745;
+      box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+      margin-right: 8px;
+    }
+    .edit-btn:hover {
+      background-color: #1e7e34;
+      box-shadow: 0 5px 15px rgba(30, 126, 52, 0.6);
+    }
+    .delete-btn {
+      background-color: #dc3545;
+      box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3);
+    }
+    .delete-btn:hover {
+      background-color: #a71d2a;
+      box-shadow: 0 5px 15px rgba(167, 29, 42, 0.6);
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 20px;
+      }
+      button {
+        width: 100%;
+        margin-bottom: 12px;
+        margin-right: 0;
+      }
+      .student-table th, .student-table td {
+        padding: 10px 12px;
+      }
+      #photoPreview {
+        max-width: 70px;
+        max-height: 70px;
+      }
+      .action-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+    }
+   
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Student Registration Form</h2>
+    <form id="registrationForm">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="number" id="age" placeholder="Age" min="1" required />
+      <input type="text" id="course" placeholder="Course" required />
+      <input type="file" id="photo" accept="image/*" required />
+      <img id="photoPreview" alt="Preview" />
+      <button type="submit">Register Student</button>
+    </form>
+
+    <button onclick="renderStudents()">View Registered Students</button>
+    <button onclick="exportCSV()">Export to CSV</button>
+    <input
+      type="text"
+      id="searchInput"
+      onkeyup="filterStudents()"
+      placeholder="Search by name or course..."
+    />
+
+    <table class="student-table" id="studentTable">
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Age</th>
+          <th>Course</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+    const tableBody = document.querySelector('#studentTable tbody');
+    const searchInput = document.getElementById('searchInput');
+    const photoInput = document.getElementById('photo');
+    const photoPreview = document.getElementById('photoPreview');
+
+    let students = JSON.parse(localStorage.getItem('students')) || [];
+
+    // Show photo preview on file select
+    photoInput.addEventListener('change', () => {
+      const file = photoInput.files[0];
+      if (!file) {
+        photoPreview.src = '';
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = e => photoPreview.src = e.target.result;
+      reader.readAsDataURL(file);
+    });
+
+    // Register new student
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const age = parseInt(document.getElementById('age').value);
+      const course = document.getElementById('course').value.trim();
+
+      if (!name || !email || !age || !course) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      if (!photoInput.files[0]) {
+        alert('Please upload a photo.');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const photoData = reader.result;
+
+        students.push({ name, email, age, course, photo: photoData });
+        localStorage.setItem('students', JSON.stringify(students));
+
+        form.reset();
+        photoPreview.src = '';
+        alert('Student registered successfully!');
+        renderStudents();
+      };
+      reader.readAsDataURL(photoInput.files[0]);
+    });
+
+    // Render students in table
+    function renderStudents() {
+      tableBody.innerHTML = '';
+      if (students.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#777;">No registered students.</td></tr>';
+        return;
+      }
+
+      students.forEach((student, index) => {
+        const tr = document.createElement('tr');
+
+        tr.innerHTML = `
+          <td><img src="${student.photo}" alt="Photo" style="max-width: 80px; max-height: 80px; border-radius: 10px; object-fit: cover;"></td>
+          <td>${student.name}</td>
+          <td>${student.email}</td>
+          <td>${student.age}</td>
+          <td>${student.course}</td>
+          <td>
+            <button class="action-btn edit-btn" onclick="editStudent(${index})">Edit</button>
+            <button class="action-btn delete-btn" onclick="deleteStudent(${index})">Delete</button>
+          </td>
+        `;
+
+        tableBody.appendChild(tr);
+      });
+    }
+
+    // Filter students by name or course
+    function filterStudents() {
+      const filter = searchInput.value.toLowerCase();
+      const rows = tableBody.getElementsByTagName('tr');
+
+      for (let row of rows) {
+        const name = row.cells[1].textContent.toLowerCase();
+        const course = row.cells[4].textContent.toLowerCase();
+        row.style.display = name.includes(filter) || course.includes(filter) ? '' : 'none';
+      }
+    }
+
+    // Delete student
+    function deleteStudent(index) {
+      if (confirm('Are you sure you want to delete this student?')) {
+        students.splice(index, 1);
+        localStorage.setItem('students', JSON.stringify(students));
+        renderStudents();
+      }
+    }
+
+    // Edit student - populate form with existing data and delete original
+    function editStudent(index) {
+      const student = students[index];
+      document.getElementById('name').value = student.name;
+      document.getElementById('email').value = student.email;
+      document.getElementById('age').value = student.age;
+      document.getElementById('course').value = student.course;
+      photoPreview.src = student.photo;
+
+      // Remove original so user can save as new
+      students.splice(index, 1);
+      localStorage.setItem('students', JSON.stringify(students));
+      renderStudents();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Export table to CSV
+    function exportCSV() {
+      if (students.length === 0) {
+        alert('No students to export.');
+        return;
+      }
+      const csvRows = [];
+      const headers = ['Name', 'Email', 'Age', 'Course'];
+      csvRows.push(headers.join(','));
+
+      students.forEach(({ name, email, age, course }) => {
+        const escaped = [name, email, age, course].map(v => `"${v.replace(/"/g, '""')}"`);
+        csvRows.push(escaped.join(','));
+      });
+
+      const csvData = csvRows.join('\n');
+      const blob = new Blob([csvData], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'students.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Initial render on page load
+    renderStudents();
+  </script>
+</body>
+</html>
